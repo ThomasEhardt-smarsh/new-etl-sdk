@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<jaxb:bindings
+        xmlns:jaxb="https://jakarta.ee/xml/ns/jaxb"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        jaxb:version="3.0">
+
+    <!--
+        In the transcript schema, there are two items (one attribute, one element) with the same name. JAXB/xjc do not
+        like this, as the default is to set the class attribute to the same name (cocMasterHashValue) which causes a
+        collision. This file tells JAXB/xjc that when we process the transcript scheme, apply the below rules to define
+        the names we will use in our Java class (the XML generated/parsed remains the same).
+    -->
+    <jaxb:bindings schemaLocation="../xsd/actiance.sfab/cis/dig/itm-transcript-1.0.xsd" node="/xs:schema">
+        <jaxb:bindings node="/xs:schema/xs:complexType/xs:sequence/xs:element[@name='coc-master-hash-value']">
+            <jaxb:property name="elementCocMasterHashValue"/>
+        </jaxb:bindings>
+
+        <jaxb:bindings node="/xs:schema/xs:complexType/xs:attribute[@name='coc-master-hash-value']">
+            <jaxb:property name="attributeCocMasterHashValue"/>
+        </jaxb:bindings>
+    </jaxb:bindings>
+
+
+</jaxb:bindings>

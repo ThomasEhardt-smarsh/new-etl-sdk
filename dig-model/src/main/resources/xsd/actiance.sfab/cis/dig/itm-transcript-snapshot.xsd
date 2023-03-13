@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2013 sp1 (x64) (http://www.altova.com) by Vijay (Actiance) -->
+<!--
+	schema design:							John Onusko, Architect
+	schema transform and updates:	Jeffrey T. Lucas, Architect
+
+	This schema is used by APC-EXPORTER.
+-->
+<xs:schema xmlns:cmn-adt-base="http://adt.cmn.xmlns.commons.platform.actiance.com/base/1.0" xmlns:cmn-adt-core="http://adt.cmn.xmlns.commons.platform.actiance.com/core/1.0" xmlns:cmn-adt-system="http://adt.cmn.xmlns.commons.platform.actiance.com/system/1.0" xmlns:itm-types="http://dig.apc.xmlns.commons.platform.actiance.com/itm/interaction/types/1.0" xmlns:itm="http://dig.apc.xmlns.commons.platform.actiance.com/itm/interaction/transcript/1.0" xmlns:sn="http://dig.apc.xmlns.commons.platform.actiance.com/itm/interaction/snapshot/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:itm-pol="http://dig.apc.xmlns.commons.platform.actiance.com/itm/interaction/policy/1.0" targetNamespace="http://dig.apc.xmlns.commons.platform.actiance.com/itm/interaction/snapshot/1.0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://adt.cmn.xmlns.commons.platform.actiance.com/base/1.0" schemaLocation="../../../actiance.commons/datatypes/cmn-dt-base-1.0.xsd"/>
+	<xs:import namespace="http://adt.cmn.xmlns.commons.platform.actiance.com/core/1.0" schemaLocation="../../../actiance.commons/datatypes/cmn-dt-core-1.0.xsd"/>
+	<xs:import namespace="http://adt.cmn.xmlns.commons.platform.actiance.com/system/1.0" schemaLocation="../../../actiance.commons/datatypes/cmn-dt-system-1.0.xsd"/>
+	<xs:import namespace="http://dig.apc.xmlns.commons.platform.actiance.com/itm/interaction/types/1.0" schemaLocation="./itm-types-1.0.xsd"/>
+	<xs:import namespace="http://dig.apc.xmlns.commons.platform.actiance.com/itm/interaction/policy/1.0" schemaLocation="./itm-policy-1.0.xsd"/>
+	<xs:import namespace="http://dig.apc.xmlns.commons.platform.actiance.com/itm/interaction/transcript/1.0" schemaLocation="./itm-transcript-1.0.xsd"/>
+	<xs:element name="snapshot" type="sn:Snapshot"/>
+	<xs:complexType name="Snapshot">
+		<xs:sequence>
+			<xs:element name="metadata" type="sn:Metadata" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="demographic" type="sn:Demographic" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="transcript-infos" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation> transcript-info list</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="transcript-info" type="sn:STranscriptInfo" minOccurs="1" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="participants" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Distinct participant list</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="participant" type="sn:SParticipant" minOccurs="1" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="text-events" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Text content events</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="text-event" type="sn:STextEvent" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="file-events" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>File content events</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="file-event" type="sn:SFileEvent" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="action-events" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>External action events</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="action-event" type="sn:SActionEvent" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="policy-events" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Policy events</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="policy-event" type="sn:SPolicyEvent" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="app-metadata" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="tags" minOccurs="0">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="tag-name" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="hold-flag" type="xs:boolean"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="interaction-event-id" type="itm-types:EventID" use="optional">
+			<xs:annotation>
+				<xs:documentation>Interaction event ID for last event in snapshot </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="transaction-scope" type="itm-types:TransactionScope" default="closed">
+			<xs:annotation>
+				<xs:documentation>Communication object transaction state</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zone" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Time Zone that is being used</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="Metadata">
+		<xs:sequence>
+			<xs:element name="properties" type="cmn-adt-core:Properties" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="tenant-id" type="itm-types:TenantID">
+				<xs:annotation>
+					<xs:documentation>Tenant ID</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="cluster-id" type="itm-types:ClusterID">
+				<xs:annotation>
+					<xs:documentation>Cluster ID</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="cluster-name" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Cluster name</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="itm-types:time-frame" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="global-communcation-oid" type="itm-types:GlobalOID">
+				<xs:annotation>
+					<xs:documentation>Global communication object ID</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="global-parent-communication-oid" type="itm-types:GlobalOID" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Global parent communication object ID</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="global-thread-oid" type="itm-types:GlobalOID">
+				<xs:annotation>
+					<xs:documentation>Global thread object ID</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="location-object-id" type="itm-types:OID" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Resource location</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="itm-types:modality"/>
+			<xs:element ref="itm-types:subject" minOccurs="0"/>
+			<!--xs:element ref="itm-types:attributes" minOccurs="0" maxOccurs="1"/-->
+			<xs:element ref="itm-types:groups" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Distinct participant groups</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+	
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="Demographic">
+		<xs:sequence>
+			<xs:element name="departments">
+				<xs:annotation>
+				<xs:documentation>department list</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+				<xs:sequence>
+				<xs:element name="department" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Group name</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="companies">
+				<xs:annotation>
+				<xs:documentation>department list</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+				<xs:sequence>
+				<xs:element name="company" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Group name</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="divisions">
+				<xs:annotation>
+				<xs:documentation>department list</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+				<xs:sequence>
+				<xs:element name="division" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Group name</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="buildings">
+				<xs:annotation>
+				<xs:documentation>department list</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+				<xs:sequence>
+				<xs:element name="building" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Group name</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="cities">
+				<xs:annotation>
+				<xs:documentation>department list</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+				<xs:sequence>
+				<xs:element name="city" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Group name</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="states">
+				<xs:annotation>
+				<xs:documentation>department list</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+				<xs:sequence>
+				<xs:element name="state" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Group name</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+				<xs:element name="countries">
+				<xs:annotation>
+				<xs:documentation>department list</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+				<xs:sequence>
+				<xs:element name="country" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Group name</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="Participant">
+		<xs:sequence>
+			<xs:element name="network-info" type="itm-types:NetworkEndpoint">
+				<xs:annotation>
+					<xs:documentation>Network endpoint information</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="user-info" type="itm-types:UserInfo">
+				<xs:annotation>
+					<xs:documentation>User information</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="attributes" type="itm-types:GeneralAttributes" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Miscellaneous participant attributes</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="participant-id" use="required">
+			<xs:annotation>
+				<xs:documentation>Participant ID - unique within the interaction participants</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="participant-role">
+			<xs:annotation>
+				<xs:documentation>Participant role within the interaction</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="initiator"/>
+					<xs:enumeration value="participant"/>
+					<xs:enumeration value="caller"/>
+					<xs:enumeration value="callee"/>
+					<xs:enumeration value="organizer"/>
+					<xs:enumeration value="presenter"/>
+					<xs:enumeration value="sender"/>
+					<xs:enumeration value="recipient"/>
+					<xs:enumeration value="from"/>
+					<xs:enumeration value="to"/>
+					<xs:enumeration value="cc"/>
+					<xs:enumeration value="bcc"/>
+					<xs:enumeration value="poster"/>
+					<xs:enumeration value="commenter"/>
+					<xs:enumeration value="re-poster"/>
+					<xs:enumeration value="rater"/>
+					<xs:enumeration value="creator"/>
+					<xs:enumeration value="assignee"/>
+					<xs:enumeration value="required invitee"/>
+					<xs:enumeration value="optional invitee"/>
+					<xs:enumeration value="responder"/>
+					<xs:enumeration value="author"/>
+					<xs:enumeration value="owner"/>
+					<xs:enumeration value="follower"/>
+					<xs:enumeration value="subscriber"/>
+					<xs:enumeration value="moderator"/>
+					<xs:enumeration value="reviewer"/>
+					<xs:enumeration value="none"/>
+					<xs:enumeration value="miscellaneous"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="SParticipant">
+		<xs:complexContent>
+			<xs:extension base="sn:Participant">
+				<xs:sequence>
+					<xs:element name="participant-time" type="xs:dateTime" minOccurs="0"/>
+					<xs:element name="interaction-checksum" type="xs:base64Binary" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="STextEvent">
+		<xs:complexContent>
+			<xs:extension base="itm:TextEvent">
+				<xs:sequence>
+					<xs:element name="creator-participant-id" type="xs:string"/>
+					<xs:element name="create-time" type="xs:dateTime"/>
+					<xs:element name="interaction-checksum" type="xs:base64Binary"/>
+					<xs:element name="snapshot-time" type="xs:dateTime"/>
+					<xs:element name="process-time" type="xs:dateTime"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="SFileEvent">
+		<xs:complexContent>
+			<xs:extension base="itm:FileEvent">
+				<xs:sequence>
+					<xs:element name="interaction-checksum" type="xs:base64Binary"/>
+					<xs:element name="filecontent-checksum" type="xs:base64Binary"/>
+					<xs:element name="snapshot-time" type="xs:dateTime"/>
+					<xs:element name="process-time" type="xs:dateTime"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="SActionEvent">
+		<xs:complexContent>
+			<xs:extension base="itm:ActionEvent">
+				<xs:sequence>
+					<xs:element name="interaction-checksum" type="xs:base64Binary" minOccurs="0"/>
+					<xs:element name="snapshot-time" type="xs:dateTime" minOccurs="0"/>
+					<xs:element name="process-time" type="xs:dateTime" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="SPolicyEvent">
+		<xs:complexContent>
+			<xs:extension base="itm:PolicyEvent">
+				<xs:sequence>
+					<xs:element name="interaction-checksum" type="xs:base64Binary" minOccurs="0"/>
+					<xs:element name="snapshot-time" type="xs:dateTime" minOccurs="0"/>
+					<xs:element name="process-time" type="xs:dateTime" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="STranscriptInfo">
+		<xs:sequence>
+			<xs:element name="transcript-id" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="transcript-timestamp" type="xs:dateTime" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="source-endpoint-id" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="source-endpoint-version" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="interaction-id" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="interactionDataState" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="interaction-start-time" type="xs:dateTime" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="interaction-checksum" type="xs:base64Binary" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="interaction-processed-time" type="xs:dateTime" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

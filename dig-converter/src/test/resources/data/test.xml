@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:transcript id="TRANSCRIPT-0001" source-endpoint-id="SOURCE-ENDPOINT-ID" time-stamp="2023-02-23T08:57:37.087-06:00" xmlns:ns2="http://dig.apc.xmlns.commons.platform.actiance.com/itm/interaction/transcript/1.0" xmlns:ns1="http://dig.apc.xmlns.commons.platform.actiance.com/itm/interaction/types/1.0" xmlns:ns4="http://dig.apc.xmlns.commons.platform.actiance.com/itm/interaction/snapshot/1.0" xmlns:ns3="http://dig.apc.xmlns.commons.platform.actiance.com/itm/interaction/policy/1.0">
+    <ns2:interaction interaction-event-id="INTERACTION-0001">
+        <ns1:time-frame>
+            <ns1:start-time timestamp="2023-02-23T08:57:37.087-06:00"/>
+            <ns1:end-time timestamp="2023-02-23T08:57:37.087-06:00"/>
+        </ns1:time-frame>
+        <ns2:communication-object-id>COMMUNICATION-OBJECT-ID-0001</ns2:communication-object-id>
+        <ns2:thread-object-id>THREAD-OBJECT-ID-0001</ns2:thread-object-id>
+        <ns1:modality classification="social" type="private" vendor="Actiance"/>
+        <ns1:subject content-type="text/plain">hello, world</ns1:subject>
+    </ns2:interaction>
+</ns2:transcript>

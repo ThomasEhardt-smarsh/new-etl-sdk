@@ -1,0 +1,41 @@
+Date: Wed, 10 Nov 2021 18:43:40 +0000
+Message-ID: <6562898a-572e-4566-9158-38206c84e392@VerQuMSGForge1.0>
+X-VerQu-Hydra-ID: =?utf-8?q?00000484000000000002BBAA2037B6A74269806E75A59628D95AAE9B0C1E1?=
+ =?utf-8?q?FED8B37D1A5487AFD2880EC8175?=
+X-FaceTime-IMA-interID:
+X-FaceTime-IMA-employeeID:
+X-FaceTime-IMA-buddyName:
+X-FaceTime-IMA-supervisedFlag:
+X-FaceTime-IMA-internalFlag:
+X-VerQu-Hydra-Stream: FXC
+8C52486556A161162DA5BE6277B3D4427CC284A6D10A3BFA3D2D75D7DCFE7F50: 179114
+From: "SystemFXConnect@credit-suisse.com" <SystemFXConnect@credit-suisse.com>
+Subject: [FXC Retention] csfb_1111111111
+To: "Chauhan, Rahul" <rahul.chauhan@credit-suisse.com>
+Content-Type: multipart/alternative; boundary="=-5nOdpaNy95LbbzXtH1leag=="
+MIME-Version: 1.0
+containerAuditId: AUD-834a13f0bb95dd33-f6152e04d4961d2d
+DRSXML_ATTR_sourceId: /Users/nigel.gray/projects/customer/credit-suisse-etl-sdk/src/test/resources/data/channels/fx-connect/f8e3a3b2-6d9e-477c-80b6-ceb049993527.eml
+
+--=-5nOdpaNy95LbbzXtH1leag==
+Content-Type: text/plain; charset=utf-8
+
+XYZ 
+
+--=-5nOdpaNy95LbbzXtH1leag==
+Content-Type: text/html; charset=utf-8
+Content-Id: <TZUNXAX1DFU4.BHTT6WFVJN8D3@sgwp9005362>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"><style>th {BACKGROUND-COLOR:#E8E8E8} tr.odd {BACKGROUND-COLOR:white} tr.even {BACKGROUND-COLOR:#F8F8F8} tr.child {BACKGROUND-COLOR:#D4E6F1} tr {vertical-align:top}</style></head><b>Our Dealer:</b> $$$$<br>
+<b>Counterparty:</b> $$$<br>
+<b>Transaction Id:</b> CALEDONIA-1$$$$$111<br>
+<b>Trade Session Id:</b> CALEDONIA-11$$$$$1111<br>
+<br>
+<table cellspacing="2" width="100%"><tr><th width="180">Date Sent (UTC)</th><th>Sender</th><th>Message</th></tr>
+<tr class="even"><td>2021-11-10T18:39:35.9670000Z</td><td>rahul.chauhan@credit-suisse.com</td><td>XYZ; Trade Session Id:  CALEDONIA-1$$$111</td></tr>
+<tr class="odd"><td>2021-11-10T18:43:40.6070000Z</td><td>rahul.chauhan@credit-suisse.com</td><td>XYZ.</td></tr>
+</table>
+<br>
+
+--=-5nOdpaNy95LbbzXtH1leag==--

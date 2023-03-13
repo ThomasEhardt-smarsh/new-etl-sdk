@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<!-- edited with XMLSpy v2012 rel. 2 sp1 (x64) (http://www.altova.com) by Manoj (Actiance) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:cmn-adt-core="http://adt.cmn.xmlns.commons.platform.actiance.com/core/1.0" targetNamespace="http://adt.cmn.xmlns.commons.platform.actiance.com/core/1.0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:complexType name="Scm">
+		<xs:annotation>
+			<xs:documentation source="version">4.0.0
+            </xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="connection" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="version">4.0.0
+                    </xs:documentation>
+					<xs:documentation source="description">
+                        The source control management system URL
+                        that describes the repository and how to connect to the
+                        repository. For more information, see the
+                        &lt;a
+                        href=&quot;http://maven.apache.org/scm/scm-url-format.html&quot;&gt;URL
+                        format&lt;/a&gt;
+                        and &lt;a
+                        href=&quot;http://maven.apache.org/scm/scms-overview.html&quot;&gt;list
+                        of supported SCMs&lt;/a&gt;.
+                        This connection is read-only.
+                    </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="developerConnection" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="version">4.0.0
+                    </xs:documentation>
+					<xs:documentation source="description">
+                        Just like &lt;code&gt;connection&lt;/code&gt;, but for developers,
+                        i.e. this scm connection
+                        will not be read only.
+                    </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="tag" type="xs:string" default="HEAD" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="version">4.0.0
+                    </xs:documentation>
+					<xs:documentation source="description">
+                        The tag of current code. By default, it&apos;s set to HEAD during
+                        development.
+                    </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="url" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="version">4.0.0
+                    </xs:documentation>
+					<xs:documentation source="description">
+                        The URL to the project&apos;s browsable SCM repository, such as
+                        ViewVC or Fisheye.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="Properties">
+		<xs:annotation>
+			<xs:documentation source="version">1.0.0+
+            </xs:documentation>
+			<xs:documentation source="description">Specifies a
+                general purpose properties declarator</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="property" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:attribute name="name" use="required">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:minLength value="1"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="value" type="xs:string" use="required"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PropertiesAny">
+		<xs:annotation>
+			<xs:documentation source="version">1.0.0+
+            </xs:documentation>
+			<xs:documentation source="description">Specifies a
+                general purpose properties declarator</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:any processContents="skip" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
