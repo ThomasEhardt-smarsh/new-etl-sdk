@@ -1,7 +1,7 @@
 package com.smarsh.dataengineering.conversionsdk.util;
 
-import com.smarsh.dataengineering.conversionsdk.util.AbstractEmailParser.EmailUser;
-import com.smarsh.dataengineering.conversionsdk.util.AbstractEmailParser.StandardEmailHeader;
+import com.smarsh.dataengineering.conversionsdk.util.EmailParser.EmailUser;
+import com.smarsh.dataengineering.conversionsdk.util.EmailParser.StandardEmailHeader;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -85,7 +85,7 @@ class SimpleEmailParserTest {
     @Test
     void parseEmailFromPathNegativeTest(@TempDir Path tempDir) {
         var emailPath = tempDir.resolve("file-does-not-exist.txt");
-        assertThrows(AbstractEmailParser.EmailParseException.class, () -> SimpleEmailParser.parseEmailFromPath(emailPath));
+        assertThrows(EmailParser.EmailParseException.class, () -> SimpleEmailParser.parseEmailFromPath(emailPath));
     }
 
     @ParameterizedTest
@@ -100,7 +100,7 @@ class SimpleEmailParserTest {
     void parseEmailFromStreamNegativeTest() throws Exception {
         var inputStream = InputStream.nullInputStream();
         inputStream.close();
-        assertThrows(AbstractEmailParser.EmailParseException.class, () -> SimpleEmailParser.parseEmailFromStream(inputStream));
+        assertThrows(EmailParser.EmailParseException.class, () -> SimpleEmailParser.parseEmailFromStream(inputStream));
     }
 
     @ParameterizedTest

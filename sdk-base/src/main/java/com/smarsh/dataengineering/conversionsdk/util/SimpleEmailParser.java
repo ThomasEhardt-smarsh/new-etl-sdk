@@ -19,7 +19,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
 
-public class SimpleEmailParser extends AbstractEmailParser {
+public class SimpleEmailParser extends EmailParser {
     private static final Logger log = LoggerFactory.getLogger(SimpleEmailParser.class);
     private static final String MAIL_MIME_ADDRESS_STRICT = "mail.mime.address.strict";
     private static final String MAIL_MIME_MULTIPART_ALLOW_EMPTY = "mail.mime.multipart.allowempty";

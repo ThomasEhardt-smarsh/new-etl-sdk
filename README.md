@@ -4,16 +4,16 @@ all the things related to the new hotness for etl
 This currently exists as multiple sub-projects under a single project but really should be individual projects:
 
 * sdk-base is the "new etl-sdk-lib"
-* dig-model is the bare code necessary to work with the DIG model (e.g. classes generated from XSD files)
-* dig-converter is the code necessary to convert (any) to DIG XML, includes writers and builders
-* fxconnect-converter is the sample code for email-based FXConnect
+* digxml-model is the bare code necessary to work with the DIG model (e.g. classes generated from XSD files)
+* digxml-creator is the code necessary to convert (any) to DIG XML, includes writers and builders
+* fxconnect-transformer is the sample code for email-based FXConnect
 
 ## general notes
 
 * I'm not beholden to any names or anything in the code - if the projects/classes could be named better, let's do it
 * this was written as 4 separate projects because they should be separate - I thought about combinging the two DIG projects but since the model never changes, it should suffice on its own
 * things being separate projects means that we can utilize this code elsewhere
-* there is still more logging I can add (but not to, say, dig-model)
+* there is still more logging I can add (but not to, say, digxml-model)
 
 ## some notes on specific projects in random order
 
@@ -28,14 +28,14 @@ This currently exists as multiple sub-projects under a single project but really
 * there's a `SimpleEmailParser` which (mostly) mimics the one in etl-sdk-lib but has some features I wanted to add, such as ensuring that if we list attachments, we are getting only things with `Content-Disposition: attachment` - there was an example from a customer where not some embedded content was not an attachment but was picked up as such
 
 
-### dig-model
+### digxml-model
 
-* I have not been able to get JAXB to work with the classes generated in dig-model; I don't know exactly why, but this would also really only be useful for testing, since we would expect input data to be too large to fit into memory
+* I have not been able to get JAXB to work with the classes generated in digxml-model; I don't know exactly why, but this would also really only be useful for testing, since we would expect input data to be too large to fit into memory
 * there are some customizations on top of the XSD to allow for code generation, large text/file events, and the DIG namespaces
 * DIG supports attachments of (virtually) unlimited size
 
 
-### dig-convert
+### digxml-creator
 
 * when writing the builder classes, I looked at the XSD - anything that is required must go in the constructor - I may change my mind on that
 * rather than writing a `.setXXX` method as well as a `.withXXX` moethod for every class attribute, I opted for a single `.with` method for all optional attributes - there are examples all over about how this works in the code but basically, it's `builder.with(builder -> builder.setXXX())` - this cuts down on the necessary boilerplate code

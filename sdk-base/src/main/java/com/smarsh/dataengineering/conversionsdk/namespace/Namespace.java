@@ -1,16 +1,18 @@
 package com.smarsh.dataengineering.conversionsdk.namespace;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Objects;
 
-public record Namespace(String localName, String namespaceURI) {
+public record Namespace(@NotNull String localName, @NotNull String namespaceURI) {
 
     public Namespace {
-        if (Objects.isNull(localName) || localName.isBlank()) {
-            throw new IllegalArgumentException("localName cannot be empty or null");
+        if (localName.isBlank()) {
+            throw new IllegalArgumentException("localName cannot be empty/blank");
         }
 
-        if (Objects.isNull(namespaceURI) || namespaceURI.isBlank()) {
-            throw new IllegalArgumentException("namespaceURI cannot be empty or null");
+        if (namespaceURI.isBlank()) {
+            throw new IllegalArgumentException("namespaceURI cannot be empty/blank");
         }
 
     }

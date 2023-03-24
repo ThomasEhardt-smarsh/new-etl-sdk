@@ -1,5 +1,6 @@
 package com.smarsh.dataengineering.conversionsdk.util;
 
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,6 +15,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.GregorianCalendar;
+import java.util.Objects;
 import java.util.TimeZone;
 
 public class DateTimeUtils {
@@ -25,7 +27,7 @@ public class DateTimeUtils {
 
     }
 
-    public static long toEpochMillis(final XMLGregorianCalendar xmlGregorianCalendar) {
+    public static long toEpochMillis(@NotNull final XMLGregorianCalendar xmlGregorianCalendar) {
         return xmlGregorianCalendar.toGregorianCalendar().getTimeInMillis();
     }
 
@@ -44,7 +46,7 @@ public class DateTimeUtils {
         return xmlGregorianCalendar;
     }
 
-    public static XMLGregorianCalendar toXmlGregorian(final String dateString, final SimpleDateFormat simpleDateFormat) throws InvalidDateException {
+    public static XMLGregorianCalendar toXmlGregorian(@NotNull final String dateString, @NotNull final SimpleDateFormat simpleDateFormat) throws InvalidDateException {
         try {
             return toXmlGregorian(simpleDateFormat.parse(dateString).getTime());
         } catch (ParseException e) {
@@ -55,15 +57,23 @@ public class DateTimeUtils {
         }
     }
 
-    public static long toEpochMillis(final String dateString, final DateTimeFormatter formatter) {
-        return LocalDateTime.parse(dateString, formatter).toInstant(ZoneOffset.UTC).toEpochMilli();
+    public static long toEpochMillis(final String dateString, final DateTimeFormatter formatter) throws InvalidDateException {
+        if (Objects.isNull(dateString) || Objects.isNull(formatter)) {
+            throw new InvalidDateException("dateString and formatter cannot be null");
+        }
+
+        try {
+            return LocalDateTime.parse(dateString, formatter).toInstant(ZoneOffset.UTC).toEpochMilli();
+        } catch (DateTimeParseException e) {
+            throw new InvalidDateException(e.getMessage());
+        }
     }
 
     public static long toEpochMillis(final String dateString, final Collection<DateTimeFormatter> formatters, long defaultValue) {
         for (DateTimeFormatter formatter : formatters) {
             try {
                 return toEpochMillis(dateString, formatter);
-            } catch (DateTimeParseException e) {
+            } catch (DateTimeParseException | InvalidDateException e) {
                 // eat
             }
         }
@@ -71,7 +81,7 @@ public class DateTimeUtils {
         return defaultValue;
     }
 
-    public static long toEpochMillis(final String dateString, final Collection<DateTimeFormatter> formatters) throws InvalidDateException {
+    public static long toEpochMillis(@NotNull final String dateString, @NotNull final Collection<DateTimeFormatter> formatters) throws InvalidDateException {
         for (DateTimeFormatter formatter : formatters) {
             try {
                 return toEpochMillis(dateString, formatter);
