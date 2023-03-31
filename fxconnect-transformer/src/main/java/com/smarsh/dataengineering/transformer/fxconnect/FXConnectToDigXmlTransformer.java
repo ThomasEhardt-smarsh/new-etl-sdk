@@ -150,7 +150,17 @@ public class FXConnectToDigXmlTransformer implements Transformer {
                                     TextEventType.NORMAL_MESSAGE,
                                     new TimeStampBuilder(timeStamp).build(),
                                     senderText
-                            ).with(b -> b.withTextContent(MimeType.TEXT_PLAIN, true, UserVisibility.ALWAYS_VISIBLE, text)).build(),
+                            ).with(b -> {
+                                b.setTextContent(
+                                        new TextContentBuilder()
+                                                .with(tcb -> {
+                                                    tcb.setContentType(MimeType.TEXT_PLAIN);
+                                                    tcb.setIndexable(true);
+                                                    tcb.setUserVisibile(UserVisibility.ALWAYS_VISIBLE);
+                                                    tcb.setValue(text);
+                                                }).build()
+                                );
+                            }).build(),
                             String.valueOf(timeStamp)
                     ).build();
                 })
