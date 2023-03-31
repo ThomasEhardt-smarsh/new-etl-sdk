@@ -19,6 +19,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.smarsh.dataengineering</groupId>
+            <artifactId>vams-etl-sdk</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>jakarta.xml.bind</groupId>
             <artifactId>jakarta.xml.bind-api</artifactId>
         </dependency>
@@ -32,11 +37,7 @@
             <artifactId>jaxb-impl</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>com.smarsh.vams</groupId>
-            <artifactId>sdk-base</artifactId>
-            <version>${project.version}</version>
-        </dependency>
+
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>

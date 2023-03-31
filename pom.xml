@@ -11,7 +11,6 @@
     <modules>
         <module>digxml-model</module>
         <module>digxml-builder</module>
-        <module>sdk-base</module>
         <module>fxconnect-transformer</module>
     </modules>
 
@@ -28,11 +27,18 @@
 
         <junit.version>5.9.2</junit.version>
 
-<!--        <commons.schema.version>3.3.12.13-release</commons.schema.version>-->
+        <vams.etl.sdk.version>1.0.0-SNAPSHOT</vams.etl.sdk.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <!-- vams dependencies -->
+            <dependency>
+                <groupId>com.smarsh.dataengineering</groupId>
+                <artifactId>vams-etl-sdk</artifactId>
+                <version>${vams.etl.sdk.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>jakarta.xml.bind</groupId>
                 <artifactId>jakarta.xml.bind-api</artifactId>

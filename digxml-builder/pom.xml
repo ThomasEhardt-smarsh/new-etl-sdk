@@ -19,15 +19,14 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.smarsh.dataengineering</groupId>
+            <artifactId>vams-etl-sdk</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.smarsh.vams</groupId>
             <artifactId>digxml-model</artifactId>
             <version>${project.version}</version>
             <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.smarsh.vams</groupId>
-            <artifactId>sdk-base</artifactId>
-            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.xml.bind</groupId>
