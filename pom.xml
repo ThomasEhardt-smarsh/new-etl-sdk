@@ -9,7 +9,6 @@
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
-        <module>digxml-model</module>
         <module>digxml-builder</module>
         <module>fxconnect-transformer</module>
     </modules>
